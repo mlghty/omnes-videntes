@@ -1,0 +1,5 @@
+psutil
+pywin32
+
+pip install psutil
+pip install pywin32
