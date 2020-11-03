@@ -27,4 +27,4 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 
 Run as a script:
 $ python3 main.py
-or run in  editor
+or run in  editors
