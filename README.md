@@ -20,7 +20,7 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 - Graph(s)
 - Remove useless PID's
 - Duration selection
-- & others
+- & others & test
 
 
 ## Usage
