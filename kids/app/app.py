@@ -3,8 +3,8 @@ import time
 
 from tkinter import ttk
 
-from pytop.utils import get_all_windows,  get_windows_processes
-from pytop.widgets import create_process_tree
+from kids.utils import get_all_windows,  get_windows_processes
+from kids.widgets import create_process_tree
 
 
 class App:
