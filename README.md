@@ -22,6 +22,8 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 - Duration selection
 - & others & test
 
+# PowerPoint
+https://docs.google.com/presentation/d/17giek9o_e0Rh0OvZVlyU83-MThIQ00ONwwIJbIcuz5s/edit?usp=sharing
 
 ## Usage
 
