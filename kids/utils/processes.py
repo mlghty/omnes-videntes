@@ -23,7 +23,8 @@ def get_windows_processes(windows):
 
                 try:
                     memory_usage = get_size(process.memory_full_info().uss)
-                except PermissionError:  # Fix permission error on this or else it wont for protected proccesses 
+                #except PermissionError:  # Fix permission error on this or else it wont for protected proccesses 
+                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                     memory_usage = "0MB"
 
                 threads = process.num_threads()
