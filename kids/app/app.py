@@ -37,8 +37,11 @@ class App:
         for process in processes:
             self.tree.insert("", "end", values=process)
 
-        self.root.after(1000, self._update_tree)
+        self.root.after(10000, self._update_tree)
 
     def start(self):
         self.root.after(1000, self._update_tree)
         self.root.mainloop()
+
+
+App().start()

@@ -1,7 +1,8 @@
 import sys
-import win32gui
-import win32process
-
+import win32.win32gui as win32gui
+import win32.win32process as win32process
+import win32gui #old
+import win32process #old
 
 def get_all_windows():
     windows = []
