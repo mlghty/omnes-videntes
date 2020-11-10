@@ -11,10 +11,8 @@ class App:
     def __init__(self):
         """ Creates a new window"""
         self.root = tkinter.Tk()
-
         self.root.title("Spy Kids 5")
         self.root.geometry("600x600")
-
         self._create_widgets()
 
     def _create_widgets(self):
@@ -42,6 +40,15 @@ class App:
     def start(self):
         self.root.after(1000, self._update_tree)
         self.root.mainloop()
+
+#def center_window(w=300, h=200):
+    # get screen width and height
+    #ws = root.winfo_screenwidth()
+    #hs = root.winfo_screenheight()
+    # calculate position x, y
+    #x = (ws / 2) - (w / 2)
+    #y = (hs / 2) - (h / 2)
+    #root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
 
 App().start()
