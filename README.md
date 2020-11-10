@@ -25,6 +25,9 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 # PowerPoint
 https://docs.google.com/presentation/d/17giek9o_e0Rh0OvZVlyU83-MThIQ00ONwwIJbIcuz5s/edit?usp=sharing
 
+# Useful links
+https://stackoverflow.com/questions/2598145/how-to-retrieve-the-process-start-time-or-uptime-in-python
+
 ## Usage
 
 Run as a script:
