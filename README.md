@@ -29,6 +29,7 @@ https://docs.google.com/presentation/d/17giek9o_e0Rh0OvZVlyU83-MThIQ00ONwwIJbIcu
 
 # Useful links
 https://stackoverflow.com/questions/2598145/how-to-retrieve-the-process-start-time-or-uptime-in-python
+https://psutil.readthedocs.io/en/release-3.2.2/
 
 ## Usage
 
