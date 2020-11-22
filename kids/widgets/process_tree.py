@@ -5,7 +5,7 @@ from tkinter.font import Font
 
 
 def create_process_tree(container, processes):
-    process_columns = ("PID", "NAME", "STATUS", "CPU", "MEMORY", "THREADS")
+    process_columns = ("Today","hour", "NAME", "TIME")  # "CPU", "MEMORY", "THREADS"
 
     tree = ttk.Treeview(container, columns=process_columns, show="headings")
 

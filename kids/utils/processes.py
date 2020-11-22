@@ -1,41 +1,56 @@
 import psutil
+import datetime
 
+processes = []
+pids = []
 
-def get_size(bytes):
-    for unit in ["", "K", "M", "G", "T", "P"]:
-        if bytes < 1024:
-            return f"{bytes:.2f}{unit}B"
-
-        bytes /= 1024
-
+today = datetime.date.today().strftime("%B %d, %Y")
+hour = datetime.datetime.now().strftime("%H:%M:%S")
 
 def get_windows_processes(windows):
     pids = [window["pid"] for window in windows]
-    processes = []
-
     for process in psutil.process_iter():
         with process.oneshot():
             if process.pid in pids:
                 pid = process.pid
+                p = psutil.Process(pid)
+                pids.append(pid)
+
+                # app name
                 name = process.name()
-                status = process.status()
-                cpu_percent = process.cpu_percent()
 
-                try:
-                    memory_usage = get_size(process.memory_full_info().uss)
-                #except PermissionError:  # Fix permission error on this or else it wont for protected proccesses 
-                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-                    memory_usage = "0MB"
+                # time
+                now = datetime.datetime.now()
+                p.create_time()
+                before = datetime.datetime.fromtimestamp(p.create_time())
+                time = now - before
+                # change
 
-                threads = process.num_threads()
+                for proc in psutil.process_iter(['pid']):
+                    PROCNAME = "explorer.exe"
+                    if proc.name() == PROCNAME:
+                        x = proc.info['pid']
+                        y = psutil.Process(x)
+                        y.create_time()
+                        b = datetime.datetime.fromtimestamp(y.create_time())
+                # change end
+                
+                # change
+                        timedelta =  before - b
+                # change end
+                        if timedelta < datetime.timedelta(seconds=40):
+                            break
+                        else:
+                            if name in[sublist[2] for sublist in processes]:   # if (any(pid in i for i in processes)):
+                                    if time in[sublist[2] for sublist in processes]:
+                                        #if time < time[1]:
+                                            #time += time
+                                            #processes.append([2]
+                                            #)
+                                        processes.append((time))
+                                    break
 
-                processes.append((
-                    pid,
-                    name,
-                    status,
-                    cpu_percent,
-                    memory_usage,
-                    threads
-                ))
-
+                            else:
+                                processes.append((today,hour,name,time))
     return processes
+

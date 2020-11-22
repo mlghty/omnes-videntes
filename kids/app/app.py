@@ -6,6 +6,7 @@ from tkinter import ttk
 from kids.utils import get_all_windows,  get_windows_processes
 from kids.widgets import create_process_tree
 
+processes = get_windows_processes(get_all_windows())
 
 class App:
     def __init__(self):
@@ -41,14 +42,8 @@ class App:
         self.root.after(1000, self._update_tree)
         self.root.mainloop()
 
-#def center_window(w=300, h=200):
-    # get screen width and height
-    #ws = root.winfo_screenwidth()
-    #hs = root.winfo_screenheight()
-    # calculate position x, y
-    #x = (ws / 2) - (w / 2)
-    #y = (hs / 2) - (h / 2)
-    #root.geometry('%dx%d+%d+%d' % (w, h, x, y))
+
 
 
 App().start()
+print(processes)
