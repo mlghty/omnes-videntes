@@ -7,6 +7,7 @@ from kids.utils import get_all_windows,  get_windows_processes
 from kids.widgets import create_process_tree
 
 processes = get_windows_processes(get_all_windows())
+windows = get_all_windows()
 
 class App:
     def __init__(self):
@@ -47,3 +48,4 @@ class App:
 
 App().start()
 print(processes)
+print(windows)
