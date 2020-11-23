@@ -4,13 +4,7 @@
 Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 
 # To Remove
-
-- The process ID # to remove
-- The app name.
-- The app status.
-- The CPU usage. # to remove
-- The memory usage. # to remove
-- The number of threads. # to remove
+- 
 
 # To add
 - Grab foreground app pid's only
@@ -23,6 +17,13 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 - Duration selection
 - & others & test
 - Implement the time delta to a graph with the the name of the app, and time dictates the bar length.
+
+# Removed
+- Removed the process ID # to remove
+- Removed the app status.
+- Removed the CPU usage. # to remove
+- Removed the memory usage. # to remove
+- Removed the number of threads. # to remove
 
 # PowerPoint
 https://docs.google.com/presentation/d/17giek9o_e0Rh0OvZVlyU83-MThIQ00ONwwIJbIcuz5s/edit?usp=sharing
