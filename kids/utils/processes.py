@@ -5,8 +5,12 @@ processes = []
 today = datetime.date.today().strftime("%B %d, %Y")
 hour = datetime.datetime.now().strftime("%H:%M:%S")
 
+def chop_microseconds(delta):
+    return delta - datetime.timedelta(microseconds=delta.microseconds)
+
 def get_windows_processes(windows):
     pids = [window["pid"] for window in windows]
+    title = [window['title'] for window in windows]
     for process in psutil.process_iter():
         with process.oneshot():
             if process.pid in pids:
@@ -14,14 +18,15 @@ def get_windows_processes(windows):
                 p = psutil.Process(pid)
                 # app name
                 name = process.name()
+                #name = title
 
                 # time
                 now = datetime.datetime.now()
                 p.create_time()
                 before = datetime.datetime.fromtimestamp(p.create_time())
                 time = now - before
+                
                 # change
-
                 for proc in psutil.process_iter(['pid']):
                     PROCNAME = "explorer.exe"
                     if proc.name() == PROCNAME:
@@ -29,8 +34,11 @@ def get_windows_processes(windows):
                         y = psutil.Process(x)
                         y.create_time()
                         b = datetime.datetime.fromtimestamp(y.create_time())
-                        timedelta =  before - b # the time diffrence between explorer.exe and proccess
+                        timedeltaS =  before - b # the time diffrence between explorer.exe and proccess
+                        timedelta = chop_microseconds(timedeltaS)
+
                 # change end
+                
                         if timedelta < datetime.timedelta(seconds=40):  # can change the seconds depedning how fast the user logsin and opens a program
                             break                                       # else issues appear
                         if name in[sublist[2] for sublist in processes]:   
@@ -41,17 +49,12 @@ def get_windows_processes(windows):
                                         if time > oldtime:
                                             diffrence = time - oldtime
                                             newtime = oldtime + diffrence
-                                            converted[3]=newtime
+                                            converted[3]=chop_microseconds(newtime)
                                             processes[i]= tuple(converted)
                                         if time < oldtime:
                                             newtime = oldtime + time
-                                            converted[3]=newtime
+                                            converted[3]=chop_microseconds(newtime)
                                             processes[i]= tuple(converted)
-                                            #return processes
-                                        #else:
-                                       # converted[3]=time         #change value at index 3 to  timedelta current usage time
-                                        #processes[i]= tuple(converted) #now change is made so convert it back to tuple 
-                                    #return processes
                         else:
                             processes.append((today,hour,name,time))
     return processes    
