@@ -35,6 +35,8 @@ https://psutil.readthedocs.io/en/release-3.2.2/
 https://docs.python.org/2/library/os.html
 http://timgolden.me.uk/pywin32-docs/win32gui.html
 
+https://stackoverflow.com/questions/18470627/how-do-i-remove-the-microseconds-from-a-timedelta-object
+
 ## Usage
 
 Run as a script:
