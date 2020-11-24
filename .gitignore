@@ -5,3 +5,4 @@ __pycache__/
 .idea/modules.xml
 .idea/omnes-videntes.iml
 .idea/vcs.xml
+.idea/.gitignore
