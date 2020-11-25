@@ -4,7 +4,7 @@ import time
 from tkinter import ttk
 
 from kids.utils import get_all_windows,  get_windows_processes
-from kids.widgets import create_process_tree
+from kids.gui import create_process_tree
 
 processes = get_windows_processes(get_all_windows())
 windows = get_all_windows()
