@@ -4,27 +4,30 @@ processes = []
 
 today = datetime.date.today().strftime("%B %d, %Y")
 hour = datetime.datetime.now().strftime("%H:%M:%S")
+name = ""
 
 def chop_microseconds(delta):
     return delta - datetime.timedelta(microseconds=delta.microseconds)
 
 def get_windows_processes(windows):
     pids = [window["pid"] for window in windows]
-    title = [window['title'] for window in windows]
     for process in psutil.process_iter():
         with process.oneshot():
             if process.pid in pids:
                 pid = process.pid
                 p = psutil.Process(pid)
                 # app name
-                name = process.name()
-                #name = title
-
+                #name = process.name()
+                for window in windows:
+                    if window['pid'] == pid: #searching for movie id in the given dictionary
+                        name = window['title']
+                        break
                 # time
                 now = datetime.datetime.now()
                 p.create_time()
                 before = datetime.datetime.fromtimestamp(p.create_time())
                 time = now - before
+                ftime = chop_microseconds(time)
                 
                 # change
                 for proc in psutil.process_iter(['pid']):
@@ -56,6 +59,6 @@ def get_windows_processes(windows):
                                             converted[3]=chop_microseconds(newtime)
                                             processes[i]= tuple(converted)
                         else:
-                            processes.append((today,hour,name,time))
+                            processes.append((today,hour,name,ftime))
     return processes    
 
