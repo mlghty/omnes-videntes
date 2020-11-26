@@ -37,6 +37,8 @@ http://timgolden.me.uk/pywin32-docs/win32gui.html
 
 https://stackoverflow.com/questions/18470627/how-do-i-remove-the-microseconds-from-a-timedelta-object
 
+https://stackoverflow.com/questions/3352918/how-to-center-a-window-on-the-screen-in-tkinter
+
 ## Usage
 
 Run as a script:
