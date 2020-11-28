@@ -8,6 +8,7 @@ def get_all_windows():
     win32gui.EnumWindows(construct_windows_list, windows)
     return windows
 
+# HWND is a handle to a window
 def construct_windows_list(hwnd, strings): # checks to see if a window is visible if not it is skipped.
     if win32gui.IsWindowVisible(hwnd): # some apps like discord, still run in the background so this is disable for such cases.
         title = win32gui.GetWindowText(hwnd)#.split(" - ")[-1]

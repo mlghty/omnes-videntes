@@ -9,7 +9,7 @@ def create_process_tree(container, processes):
 
     tree = ttk.Treeview(container, columns=process_columns, show="headings")
 
-    tree.grid(column=0, row=0, sticky="nsew", in_=container)
+    tree.grid(column=0, row=0, sticky="ew", in_=container)
 
     for column in process_columns:
         tree.heading(column, text=column.title())
