@@ -71,7 +71,7 @@ class app:
         #self.t.setDaemon(True)
         #self.t.start()
 
-        self.root.after(10000, self._update_tree)
+        self.root.after(1000, self._update_tree)
         #self.root.after(10000, self.t)
         self.center_window(400, 700)
         self.root.mainloop()
