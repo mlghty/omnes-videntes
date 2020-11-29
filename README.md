@@ -13,7 +13,7 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 - Graph Selection Tab
 - Push Data Tab
 - Possible SSL
-- Remove before sending to server PID's
+- Remove bad processes before pushing to server
 - Duration selection
 - & others & test
 - Implement the time delta to a graph with the the name of the app, and time dictates the bar length.
