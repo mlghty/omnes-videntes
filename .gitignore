@@ -137,3 +137,8 @@ __pycache__/
 .idea/omnes-videntes.iml
 .idea/vcs.xml
 .idea/.gitignore
+.vs/omnes-videntes/v16/.suo
+.vs/ProjectSettings.json
+.vs/PythonSettings.json
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
