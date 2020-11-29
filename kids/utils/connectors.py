@@ -1,13 +1,5 @@
 import mysql.connector as mc
 
- #processList = processes
-        #quantity = len(processList)
-
-        #for x in range(0, quantity):
-            #dataChunk = processList[x]
-
-            #push_data(username, password, dataChunk)
-
 def login(username, password):
 
     db = mc.connect(
