@@ -11,6 +11,7 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 - Grab the time delta between proccess time and current time / working but need to implement / display
 - Graph(s)
 - Graph Selection Tab
+- Estimated Productivity
 - Push Data Tab
 - Possible SSL
 - Remove bad processes before pushing to server
