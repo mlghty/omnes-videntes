@@ -10,7 +10,10 @@ Built with Python 3.8, it lets you monitor and graph your running desktop apps.
 - Grab foreground app pid's only
 - Grab the time delta between proccess time and current time / working but need to implement / display
 - Graph(s)
-- Remove useless PID's
+- Graph Selection Tab
+- Push Data Tab
+- Possible SSL
+- Remove before sending to server PID's
 - Duration selection
 - & others & test
 - Implement the time delta to a graph with the the name of the app, and time dictates the bar length.
