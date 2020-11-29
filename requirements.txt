@@ -1,5 +1,7 @@
 psutil
 pywin32
+sql connector
 
 pip install psutil
 pip install pywin32
+pip install mysql-connector-python
