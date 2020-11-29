@@ -1,7 +1,7 @@
 # omnes-videntes
 # Productivity Graph Tracker
 
-Built with Python 3.8, it lets you monitor and graph your running desktop apps.
+Built with Python 3.6, it lets you monitor and graph your running desktop apps.
 
 # To Remove
 - 
