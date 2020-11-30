@@ -23,6 +23,8 @@ class start_screen:
         self.tab2 = ttk.Frame(self.tab_control)
         self.tab3 = ttk.Frame(self.tab_control)
         self.tab4 = ttk.Frame(self.tab_control)
+        self.tab5 = ttk.Frame(self.tab_control)
+        self.tab6 = ttk.Frame(self.tab_control)
 
         # notebook style
         noteStyler = ttk.Style()
@@ -37,7 +39,7 @@ class start_screen:
         self.tab_control.pack(expand = 1, fill ="both")
 
         # call login and register tabs
-        login_scr(self.tab1, self.tab3, self.tab4, self.tab_control, self.root).make_login()
+        login_scr(self.tab1, self.tab3, self.tab4, self.tab5, self.tab6, self.tab_control, self.root).make_login()
         register_scr(self.tab2, self.tab_control).make_register()
 
     def start(self):
