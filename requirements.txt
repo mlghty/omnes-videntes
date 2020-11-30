@@ -1,7 +1,10 @@
 psutil
 pywin32
 sql connector
+matplotlib/numpy
 
 pip install psutil
 pip install pywin32
 pip install mysql-connector-python
+pip install matplotlib
+pip install numpy==1.19.3
