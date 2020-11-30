@@ -1,5 +1,3 @@
-# omnes-videntes
-
 # Productivity Graph Tracker
 
 # Introduction
