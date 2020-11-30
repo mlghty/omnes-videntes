@@ -2,7 +2,7 @@ import psutil
 import datetime
 processes = []
 
-today = datetime.date.today().strftime("%B %d, %Y")
+today = datetime.date.today().strftime("%d/%m/%Y")
 hour = datetime.datetime.now().strftime("%H:%M:%S")
 name = ""
 
@@ -60,5 +60,4 @@ def get_windows_processes(windows):
                                             processes[i]= tuple(converted)
                         else:
                             processes.append((today,hour,name,ftime))
-    return processes    
-
+    return processes   

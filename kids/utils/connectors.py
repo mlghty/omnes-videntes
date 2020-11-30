@@ -1,4 +1,7 @@
 import mysql.connector as mc
+from datetime import date, datetime
+import matplotlib.pyplot as plt
+
 
  #processList = processes
         #quantity = len(processList)
@@ -7,6 +10,87 @@ import mysql.connector as mc
             #dataChunk = processList[x]
 
             #push_data(username, password, dataChunk)
+
+def push_userdata(username, work):
+
+    db = mc.connect(
+    host = "35.223.136.62",
+    user = "logged_usr",
+    passwd = "Logged_usr",
+    database = "3328_database"
+    )
+
+    #split up the time
+    today = date.today()
+    today = today.strftime("%d/%m/%Y")
+    today_list = today.split('/')
+    day = today_list[1]
+    month = today_list[0]
+    year = today_list[2]
+
+    time = datetime.now()
+    time = time.strftime("%H:%M:%S")
+    cursor = db.cursor()
+
+    cursor.execute('INSERT INTO proxy_userdata VALUES (%s, NULL, %s, %s, %s, %s, %s)', (username, day, month, year, time, work))
+    cursor.callproc('handle_userdata')
+    db.commit()
+
+def push_appdata(username, day, month, year, time, appname, runtime):
+
+    db = mc.connect(
+    host = "35.223.136.62",
+    user = "logged_usr",
+    passwd = "Logged_usr",
+    database = "3328_database"
+    )
+
+    cursor = db.cursor()
+    cursor.execute('INSERT INTO proxy_appdata VALUES (%s, NULL, %s, %s, %s, %s, %s, %s)', (username, day, month, year, time, appname, runtime))
+    db.commit()
+    cursor.callproc('handle_appdata')
+    db.commit()
+
+def get_appdata(username):
+
+    db = mc.connect(
+    host = "35.223.136.62",
+    user = "logged_usr",
+    passwd = "Logged_usr",
+    database = "3328_database"
+    )
+
+    cursor = db.cursor()
+    cursor.execute('INSERT INTO get_appdata VALUES (%s, NULL, NULL, NULL, NULL, NULL, NULL, NULL)', (username,))
+    db.commit()
+
+    cursor.callproc('handle_get_appdata')
+    db.commit()
+    cursor.execute('SELECT * FROM good_appdata')
+    re_data = cursor.fetchall()
+
+    return re_data
+
+def get_userdata(username):
+
+    db = mc.connect(
+    host = "35.223.136.62",
+    user = "logged_usr",
+    passwd = "Logged_usr",
+    database = "3328_database"
+    )
+
+    cursor = db.cursor()
+    cursor.execute('INSERT INTO get_userdata VALUES (%s, NULL, NULL, NULL, NULL, NULL, NULL)', (username,))
+    db.commit()
+
+    cursor.callproc('handle_get_userdata')
+    db.commit()
+    cursor.execute('SELECT * FROM good_userdata')
+    re_data = cursor.fetchall()
+
+    return re_data
+
 
 def login(username, password):
 
@@ -33,7 +117,6 @@ def login(username, password):
         
         return 0
     
-
 def registration(username, password):
 
     db = mc.connect(
@@ -70,3 +153,5 @@ def registration(username, password):
         cursor.callproc('Clear_Temp')
 
         return 0
+
+get_userdata('test')
