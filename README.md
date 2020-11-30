@@ -2,8 +2,6 @@
 
 # Productivity Graph Tracker
 
-Built with Python 3.6, it lets you monitor and graph your running desktop apps.
-
 # Introduction
 
 Built with Python 3.6, it lets you monitor and graph your running desktop apps.
@@ -27,14 +25,14 @@ Built with Python 3.6, it lets you monitor and graph your running desktop apps.
 
 # Refrences
 
-- [Link](https://stackoverflow.com/questions/2598145/how-to-retrieve-the-process-start-time-or-uptime-in-python)
-- [Link](https://psutil.readthedocs.io/en/release-3.2.2/)
-- [Link](https://docs.python.org/2/library/os.html)
-- [Link](http://timgolden.me.uk/pywin32-docs/win32gui.html)
-- [Link](https://stackoverflow.com/questions/18470627/how-do-i-remove-the-microseconds-from-a-timedelta-object)
-- [Link](https://stackoverflow.com/questions/3352918/how-to-center-a-window-on-the-screen-in-tkinter)
-- [Link](https://codeshack.io/login-system-python-flask-mysql/)
-- [Link](https://www.percona.com/blog/2013/06/22/setting-up-mysql-ssl-and-secure-connections/)
+- [Process time](https://stackoverflow.com/questions/2598145/how-to-retrieve-the-process-start-time-or-uptime-in-python)
+- [Psutil](https://psutil.readthedocs.io/en/release-3.2.2/)
+- [Os](https://docs.python.org/2/library/os.html)
+- [win32](http://timgolden.me.uk/pywin32-docs/win32gui.html)
+- [microseconds](https://stackoverflow.com/questions/18470627/how-do-i-remove-the-microseconds-from-a-timedelta-object)
+- [center_window](https://stackoverflow.com/questions/3352918/how-to-center-a-window-on-the-screen-in-tkinter)
+- [login system](https://codeshack.io/login-system-python-flask-mysql/)
+- [mySql SSL](https://www.percona.com/blog/2013/06/22/setting-up-mysql-ssl-and-secure-connections/)
 
 # Usage
 
