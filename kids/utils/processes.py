@@ -19,7 +19,7 @@ def get_windows_processes(windows):
                 # app name
                 #name = process.name()
                 for window in windows:
-                    if window['pid'] == pid: #searching for movie id in the given dictionary
+                    if window['pid'] == pid: #searching for id in the given dictionary
                         name = window['title']
                         break
                 # time
