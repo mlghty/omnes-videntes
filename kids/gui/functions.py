@@ -2,9 +2,15 @@ import tkinter as tk
 import time
 from threading import Thread
 import threading
-from kids.utils import login, registration, get_windows_processes, get_all_windows
+from kids.utils import login, registration, push_userdata, get_windows_processes, get_all_windows, push_appdata, get_appdata, get_userdata
 from kids.gui import create_process_tree
+from datetime import date, datetime
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure 
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk) 
 # abandon all hope ye who enters here
+
+tester = get_windows_processes(get_all_windows())
 
 def center_window(root, w, h):
 
@@ -21,12 +27,15 @@ class start_data():
     def __init__(self, tab_control, tab, root):
         self.tab_control = tab_control
         self.tab = create_process_tree(self.tab_control, get_windows_processes(get_all_windows()))
+        self.test = get_windows_processes(get_all_windows())
         self.root = root
+        self.test = "test"
     
     def get_processes(self):
+        
+        self.test = get_windows_processes(get_all_windows())
+        return self.test
 
-        return get_windows_processes(get_all_windows())
-    
     def get_windows(self):
 
         return get_all_windows()
@@ -83,10 +92,10 @@ class login_scr():
 
             return
 
-        username = self.username_field.get()
-        password = self.password_field.get()
+        self.username = self.username_field.get()
+        self.password = self.password_field.get()
 
-        x = login(username, password)
+        x = login(self.username, self.password)
 
         if(x):
             
@@ -133,6 +142,30 @@ class login_scr():
         
         self.make_widgets()
 
+    def get_week_appgraph(self, runtimes, app_names):
+
+        fig = Figure(figsize = (5, 5), dpi = 100)
+        ax1 = fig.add_subplot(111)  
+
+        #fig1, ax1 = plt.subplots()
+        ax1.pie(runtimes, labels = app_names, autopct='%1.1f%%', shadow=True, startangle = 90)
+        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+                
+        canvas = FigureCanvasTkAgg(fig, master = self.tab4) 
+        canvas.get_tk_widget().pack()
+
+    def get_week_usergraph(self, times):
+
+        fig = Figure(figsize = (5, 5), dpi = 100)
+        ax1 = fig.add_subplot(111)  
+
+        #fig1, ax1 = plt.subplots()
+        ax1.pie(times, labels = ["Total Time", "Worked Time"], autopct='%1.1f%%', shadow=True, startangle = 90)
+        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+                
+        canvas = FigureCanvasTkAgg(fig, master = self.tab4) 
+        canvas.get_tk_widget().pack()  
+
     # clears username prompt
     def log_clear_username(self, event = None):
 
@@ -170,37 +203,159 @@ class login_scr():
             
             self.error_label.pack(side = 'top', pady = 45)
             return
-    
+
+        self.work = self.input_field.get()
+        self.work = int(self.work)
+
         self.error_label.pack_forget()
         self.input_field.delete(0, "end")
-        print("do push data")
+        
+        push_userdata(self.username, self.work)
 
     def push_app_data(self, event = None):
-        print("do push app data")
-    
+
+        process_tuple = tester
+        process_size = len(process_tuple)
+        
+        for j in range(0, process_size):
+            x = process_tuple[j]
+            time = x[1]
+            app_name = x[2]
+
+            if (app_name == "Calculator") or (app_name == "Settings") or (app_name == "Microsoft Text Input Application"):
+                continue
+
+            app_time = x[3]
+        
+            app_time = str(app_time)
+            app_time = app_time.split(':')
+
+            _hours = app_time[0]
+            _minutes = app_time[1]
+
+            app_time = (int(_hours) * 60) + int(_minutes)
+
+            today_list = x[0]
+            today_list = today_list.split('/')
+            day = today_list[1]
+            month = today_list[0]
+            year = today_list[2]
+        
+            push_appdata(self.username, day, month, year, time, app_name, app_time)
+
     def get_appdata_week(self, event = None):
+
         self.tab_control.tab(4, state = "normal")
-        print("get a week of app data")
+
+        center_window(self.root, 700, 600)
+
+        graph_processes = get_appdata(self.username)
+
+        sizeoff = len(graph_processes)
+        app_names = []
+        runtimes = []
+
+        for x in range(0, sizeoff):
+            iterator = graph_processes[x]
+
+            app_names.append(iterator[4])
+            runtimes.append(iterator[5])
+                
+        self.get_week_appgraph(runtimes, app_names)
+
     
     def get_appdata_weeks(self, event = None):
         self.tab_control.tab(4, state = "normal")
-        print("get two weeks of app data")
+        center_window(self.root, 700, 600)
+
+
+        graph_processes = get_appdata(self.username)
+
+        sizeoff = len(graph_processes)
+        app_names = []
+        runtimes = []
+
+        for x in range(0, sizeoff):
+            iterator = graph_processes[x]
+
+            app_names.append(iterator[4])
+            runtimes.append(iterator[5])
+                
+        self.get_week_appgraph(runtimes, app_names)
     
     def get_appdata_month(self, event = None):
         self.tab_control.tab(4, state = "normal")
-        print("get one month of app data")
+
+        center_window(self.root, 700, 600)
+        graph_processes = get_appdata(self.username)
+
+        sizeoff = len(graph_processes)
+        app_names = []
+        runtimes = []
+
+        for x in range(0, sizeoff):
+            iterator = graph_processes[x]
+
+            app_names.append(iterator[4])
+            runtimes.append(iterator[5])
+                
+        self.get_week_appgraph(runtimes, app_names)
     
     def get_usrdata_week(self, event = None):
         self.tab_control.tab(4, state = "normal")
-        print("get one week of user data")
+
+        center_window(self.root, 700, 600)
+        graph_processes = get_userdata(self.username)
+
+        sizeoff = len(graph_processes)
+        worked_time = 0
+
+        for x in range(0, sizeoff):
+            iterator = graph_processes[x]
+
+            worked_time += (iterator[4])
+        
+        passer = [(7 * 24), worked_time]
+                
+        self.get_week_usergraph(passer)
     
     def get_usrdata_weeks(self, event = None):
+
         self.tab_control.tab(4, state = "normal")
-        print("get two weeks of user data")
+
+        center_window(self.root, 700, 600)
+        graph_processes = get_userdata(self.username)
+
+        sizeoff = len(graph_processes)
+        worked_time = 0
+
+        for x in range(0, sizeoff):
+            iterator = graph_processes[x]
+
+            worked_time += (iterator[4])
+        
+        passer = [(14 * 24), worked_time]
+                
+        self.get_week_usergraph(passer)
     
     def get_usrdata_month(self, event = None):
+
         self.tab_control.tab(4, state = "normal")
-        print("get a month of user data")
+
+        center_window(self.root, 700, 600)
+        graph_processes = get_userdata(self.username)
+
+        sizeoff = len(graph_processes)
+        worked_time = 0
+
+        for x in range(0, sizeoff):
+            iterator = graph_processes[x]
+
+            worked_time += (iterator[4])
+        
+        passer = [(28 * 24), worked_time]
+                
+        self.get_week_usergraph(passer)
 
     def make_widgets(self):
 

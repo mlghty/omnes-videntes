@@ -1,7 +1,5 @@
 # main control file
 # 29 November, 2020
-from threading import Thread
-import threading
 import tkinter as tk
 from tkinter import ttk
 

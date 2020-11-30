@@ -2,7 +2,7 @@ import psutil
 import datetime
 processes = []
 
-today = datetime.date.today().strftime("%B %d, %Y")
+today = datetime.date.today().strftime("%d/%m/%Y")
 hour = datetime.datetime.now().strftime("%H:%M:%S")
 name = ""
 
