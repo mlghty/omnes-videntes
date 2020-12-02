@@ -137,34 +137,32 @@ class login_scr():
         self.app_one_week = tk.Button(self.tab3, text = "1 Week")
         self.app_two_weeks = tk.Button(self.tab3, text = "2 Weeks")
         self.app_one_month = tk.Button(self.tab3, text = "1 Month")
-
+        self.clear_button = tk.Button(self.tab3, text = "Clear Graphs")
         self.show_processes = tk.Button(self.tab3, text = "Show Processes")
         
         self.make_widgets()
 
-    def get_week_appgraph(self, runtimes, app_names):
+    def get_week_appgraph(self, returned_runtimes, returned_app_names):
 
-        fig = Figure(figsize = (5, 5), dpi = 100)
+        fig = Figure(figsize = (10, 10))
         ax1 = fig.add_subplot(111)  
-
         #fig1, ax1 = plt.subplots()
-        ax1.pie(runtimes, labels = app_names, autopct='%1.1f%%', shadow=True, startangle = 90)
+        ax1.pie(returned_runtimes, labels = returned_app_names, autopct='%1.1f%%', labeldistance = 1.05, startangle = 90)
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
                 
-        canvas = FigureCanvasTkAgg(fig, master = self.tab4) 
-        canvas.get_tk_widget().pack()
+        self.canvas = FigureCanvasTkAgg(fig, master = self.tab4) 
+        self.canvas.get_tk_widget().pack()
 
     def get_week_usergraph(self, times):
 
-        fig = Figure(figsize = (5, 5), dpi = 100)
+        fig = Figure(figsize = (10, 10))
         ax1 = fig.add_subplot(111)  
-
         #fig1, ax1 = plt.subplots()
-        ax1.pie(times, labels = ["Total Time", "Worked Time"], autopct='%1.1f%%', shadow=True, startangle = 90)
+        pie_wedge = ax1.pie(times, labels = ["Total Time", "Worked Time"], autopct='%1.1f%%', startangle = 90)
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
                 
-        canvas = FigureCanvasTkAgg(fig, master = self.tab4) 
-        canvas.get_tk_widget().pack()  
+        self.canvas = FigureCanvasTkAgg(fig, master = self.tab4) 
+        self.canvas.get_tk_widget().pack()  
 
     # clears username prompt
     def log_clear_username(self, event = None):
@@ -244,62 +242,70 @@ class login_scr():
             push_appdata(self.username, day, month, year, time, app_name, app_time)
 
     def get_appdata_week(self, event = None):
-
         self.tab_control.tab(4, state = "normal")
-
         center_window(self.root, 700, 600)
-
         graph_processes = get_appdata(self.username)
-
         sizeoff = len(graph_processes)
         app_names = []
         runtimes = []
-
+        returned_runtimes = []
+        count = 1
         for x in range(0, sizeoff):
             iterator = graph_processes[x]
-
             app_names.append(iterator[4])
             runtimes.append(iterator[5])
-                
-        self.get_week_appgraph(runtimes, app_names)
+        size = len(app_names)
+        returned_app_names= (app_names[:5])
+        for x in reversed(runtimes):
+            returned_runtimes.append(x)
+            if count==5:
+                break
+            count+=1    
+        self.get_week_appgraph(returned_runtimes, returned_app_names)
 
-    
     def get_appdata_weeks(self, event = None):
         self.tab_control.tab(4, state = "normal")
         center_window(self.root, 700, 600)
-
-
         graph_processes = get_appdata(self.username)
-
         sizeoff = len(graph_processes)
         app_names = []
         runtimes = []
-
+        returned_runtimes = []
+        count = 1
         for x in range(0, sizeoff):
             iterator = graph_processes[x]
-
             app_names.append(iterator[4])
             runtimes.append(iterator[5])
-                
-        self.get_week_appgraph(runtimes, app_names)
+        size = len(app_names)
+        returned_app_names= (app_names[:5])
+        for x in reversed(runtimes):
+            returned_runtimes.append(x)
+            if count==5:
+                break
+            count+=1    
+        self.get_week_appgraph(returned_runtimes, returned_app_names)
     
     def get_appdata_month(self, event = None):
-        self.tab_control.tab(4, state = "normal")
-
+       self.tab_control.tab(4, state = "normal")
         center_window(self.root, 700, 600)
         graph_processes = get_appdata(self.username)
-
         sizeoff = len(graph_processes)
         app_names = []
         runtimes = []
-
+        returned_runtimes = []
+        count = 1
         for x in range(0, sizeoff):
             iterator = graph_processes[x]
-
             app_names.append(iterator[4])
             runtimes.append(iterator[5])
-                
-        self.get_week_appgraph(runtimes, app_names)
+        size = len(app_names)
+        returned_app_names= (app_names[:5])
+        for x in reversed(runtimes):
+            returned_runtimes.append(x)
+            if count==5:
+                break
+            count+=1    
+        self.get_week_appgraph(returned_runtimes, returned_app_names)
     
     def get_usrdata_week(self, event = None):
         self.tab_control.tab(4, state = "normal")
@@ -356,6 +362,8 @@ class login_scr():
         passer = [(28 * 24), worked_time]
                 
         self.get_week_usergraph(passer)
+    def clear_graphs(self, event = None):
+        self.canvas._tkcanvas.destroy()
 
     def make_widgets(self):
 
@@ -383,11 +391,12 @@ class login_scr():
         self.app_two_weeks.pack(side = 'top', pady = 5)
         self.app_one_month.bind("<Button-1>", self.get_appdata_month)
         self.app_one_month.pack(side = 'top', pady = 5)
-
+       
         self.other_label.pack(side = 'top', pady = 15)
         self.show_processes.bind("<Button-1>", self.show_app_processes)
         self.show_processes.pack(side = 'top')
-
+        self.clear_button.bind("<Button-1>", self.clear_graphs)
+        self.clear_button.pack(side = 'top', pady = 5)
     # positions widgets for login screen
     def make_login(self):
 
